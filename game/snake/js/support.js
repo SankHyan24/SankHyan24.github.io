@@ -1,11 +1,11 @@
 'use strict';
 
 function getPosTop(i, j) {
-    return 8 + i * 32;
+    return 7 + i * 32;
 }
 
 function getPosLeft(i, j) {
-    return 8 + j * 32;
+    return 7 + j * 32;
 }
 
 function moveSnake() {
@@ -73,9 +73,6 @@ function boardUpdate() {
             if (board[i][j] > 0) {
                 board[i][j]--;
             }
-            if (board[i][j] == 0) {
-                gridCell.css("display", "none");
-            }
             else {
                 gridCell.css("display", "block");
             }
@@ -88,8 +85,8 @@ function boardUpdate() {
 }
 
 function generateFood() {
-    var rand_valid = false, rand_counter = 0;
-    var gen_num, gen_x = 0, gen_y = 0;
+    let rand_valid = false, rand_counter = 0;
+    let gen_num, gen_x = 0, gen_y = 0;
     while (!rand_valid && rand_counter < 1e6) {
         gen_num = Math.floor(Math.random() * 256);
         gen_x = Math.floor(gen_num / 16);
@@ -107,51 +104,17 @@ function generateFood() {
 
 function getbgColor(number) {
     switch (number) {
-        case -1:
-            return "#6fd90dd3";
-            break;
-        case -2:
+        case -2:// The Wall
             return "#79430dd3";
-            break;
-        case 1:
-            return "#eee4da";
-            break;
-        case 8:
-            return "#f26179";
-            break;
-        case 16:
-            return "#f59563";
-            break;
-        case 32:
-            return "#f67c5f";
-            break;
-        case 64:
-            return "#f65e36";
-            break;
-        case 128:
-            return "#edcf72";
-            break;
-        case 256:
-            return "#edcc61";
-            break;
-        case 512:
-            return "#9c0";
-            break;
-        case 1024:
-            return "#3365a5";
-            break;
-        case 2048:
-            return "#09c";
-            break;
-        case 4096:
-            return "#a6bc";
-            break;
-        case 8192:
-            return "#93c";
-            break;
-        default:
-            return "#f65e36";
-            break;
+        case -1:// The Food
+            return "#6fd90dd3";
+        case 0:// The Way
+            return "#dbcbbc";
     }
-    return "black";
+    var numColor = Math.ceil(number / 128).toString(16);
+    if (numColor.length < 2)
+        numColor = "0" + numColor;
+    if (numColor.length > 2)
+        numColor = numColor[0] + numColor[2];
+    return "#eeffee";
 }

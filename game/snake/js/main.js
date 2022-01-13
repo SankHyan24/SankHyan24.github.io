@@ -47,8 +47,8 @@ var game = {
 
 const DIR = {
     up: 0,
-    down: 2,
     right: 1,
+    down: 2,
     left: 3,
 };
 
@@ -57,7 +57,7 @@ var snake_head = {
     dirbuffer: DIR.up,
     x: 8,
     y: 8,
-    len: 1,
+    len: 3,
     update: function (newx, newy) {
         this.x = newx;
         this.y = newy;
@@ -67,7 +67,7 @@ var snake_head = {
         this.dirbuffer = DIR.up;
         this.x = 8;
         this.y = 8;
-        this.len = 1;
+        this.len = 3;
     },
 };
 
@@ -80,8 +80,26 @@ var score = {
     }
 };
 
-
-
-// let id = setInterval(console.log("fuwa fuwa time"), 1);
-// setTimeout(console.log("fuwa fuwa time"), 1000);
-
+var clickControler = {
+    sd: 1,
+    up: function () {
+        if (snake_head.direction != DIR.down && game.ifstart())
+            snake_head.dirbuffer = DIR.up;
+        return true;
+    },
+    left: function () {
+        if (snake_head.direction != DIR.right && game.ifstart())
+            snake_head.dirbuffer = DIR.left;
+        return true;
+    },
+    right: function () {
+        if (snake_head.direction != DIR.left && game.ifstart())
+            snake_head.dirbuffer = DIR.right;
+        return true;
+    },
+    down: function () {
+        if (snake_head.direction != DIR.up && game.ifstart())
+            snake_head.dirbuffer = DIR.down;
+        return true;
+    },
+};
