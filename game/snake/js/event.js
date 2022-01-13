@@ -51,28 +51,35 @@ function changeDiv() {
     posi = curid.indexOf("-");
     lin_x = curid.substr(0, posi);
     lin_y = curid.substr(posi + 1, 2);
-    console.log(lin_x + "-" + lin_y);
+    lin_x = parseInt(lin_x, 10);
+    lin_y = parseInt(lin_y, 10);
     if (lin_x == lin_y || lin_x + lin_y == 15) {
         return false;
     }
     if (lin_x > lin_y) {
         if (lin_x + lin_y < 15) {// Left
-            if (snake_head.direction != DIR.down)
-                snake_head.dirbuffer = DIR.up;
-        }
-        else {// Down
             if (snake_head.direction != DIR.right)
                 snake_head.dirbuffer = DIR.left;
+            // console.log("Left");
+        }
+        else {// Down
+            if (snake_head.direction != DIR.up)
+                snake_head.dirbuffer = DIR.down;
+            // console.log("Down");
         }
     }
     else {
         if (lin_x + lin_y < 15) {// Up
-            if (snake_head.direction != DIR.left)
-                snake_head.dirbuffer = DIR.right;
+
+            if (snake_head.direction != DIR.down)
+                snake_head.dirbuffer = DIR.up;
+            // console.log("Up");
         }
         else {// Right
-            if (snake_head.direction != DIR.up)
-                snake_head.dirbuffer = DIR.down;
+            if (snake_head.direction != DIR.left)
+                snake_head.dirbuffer = DIR.right;
+            // console.log("Right");
         }
     }
+    return true;
 }
