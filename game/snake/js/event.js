@@ -83,4 +83,3 @@ function changeDiv() {
     }
     return true;
 }
-
