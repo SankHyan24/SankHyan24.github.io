@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GAMES101 19,20,21,22 | Chuan 川 Charles</title><meta name="keywords" content="Graphics"><meta name="author" content="Charles Sun"><meta name="copyright" content="Charles Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="19 Cameras, Lenses and Light Fields 相机棱镜和光场Camera Structure shutter 快门 sensor 传感器，感知Irradiance  针孔相机 Pinhole Image Formation没有模糊 Feild of view (FOV) 视场取决于Lens和Sensor（宽度是h）的距离（f）。 $Fov&#x3D;2 arctan(\frac{h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAMES101 19,20,21,22">
+<meta property="og:url" content="https://124.223.12.109/2022/01/18/2201190/index.html">
+<meta property="og:site_name" content="Chuan 川 Charles">
+<meta property="og:description" content="19 Cameras, Lenses and Light Fields 相机棱镜和光场Camera Structure shutter 快门 sensor 传感器，感知Irradiance  针孔相机 Pinhole Image Formation没有模糊 Feild of view (FOV) 视场取决于Lens和Sensor（宽度是h）的距离（f）。 $Fov&#x3D;2 arctan(\frac{h">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg">
+<meta property="article:published_time" content="2022-01-18T14:38:31.000Z">
+<meta property="article:modified_time" content="2022-01-21T03:31:55.846Z">
+<meta property="article:author" content="Charles Sun">
+<meta property="article:tag" content="Graphics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg"><link rel="shortcut icon" href="https://s2.loli.net/2022/01/04/1DCTS7sH3om6rXU.jpg"><link rel="canonical" href="https://124.223.12.109/2022/01/18/2201190/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "[object Object]");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Charles Sun","link":"链接: ","source":"来源: Chuan 川 Charles","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAMES101 19,20,21,22',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-21 11:31:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2021/12/31/A7ps1j5SnHz8giP.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 程序</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/2048"><i class="fa-fw fas fa-database"></i><span> 2048</span></a></li><li><a class="site-page child" href="/game/snake"><i class="fa-fw fas fa-gamepad"></i><span> 贪吃蛇</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Chuan 川 Charles</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 程序</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/2048"><i class="fa-fw fas fa-database"></i><span> 2048</span></a></li><li><a class="site-page child" href="/game/snake"><i class="fa-fw fas fa-gamepad"></i><span> 贪吃蛇</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAMES101 19,20,21,22</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-18T14:38:31.000Z" title="发表于 2022-01-18 22:38:31">2022-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-21T03:31:55.846Z" title="更新于 2022-01-21 11:31:55">2022-01-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GAMES101/">GAMES101</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAMES101 19,20,21,22"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="19-Cameras-Lenses-and-Light-Fields-相机棱镜和光场"><a href="#19-Cameras-Lenses-and-Light-Fields-相机棱镜和光场" class="headerlink" title="19 Cameras, Lenses and Light Fields 相机棱镜和光场"></a>19 Cameras, Lenses and Light Fields 相机棱镜和光场</h1><h2 id="Camera-Structure"><a href="#Camera-Structure" class="headerlink" title="Camera Structure"></a>Camera Structure</h2><ul>
+<li>shutter 快门</li>
+<li>sensor 传感器，感知Irradiance</li>
+</ul>
+<h3 id="针孔相机-Pinhole-Image-Formation"><a href="#针孔相机-Pinhole-Image-Formation" class="headerlink" title="针孔相机 Pinhole Image Formation"></a>针孔相机 Pinhole Image Formation</h3><p>没有模糊</p>
+<h3 id="Feild-of-view-FOV-视场"><a href="#Feild-of-view-FOV-视场" class="headerlink" title="Feild of view (FOV) 视场"></a>Feild of view (FOV) 视场</h3><p>取决于Lens和Sensor（宽度是h）的距离（f）。 $Fov=2 arctan(\frac{h}{2f})$</p>
+<h3 id="Exposure-曝光"><a href="#Exposure-曝光" class="headerlink" title="Exposure 曝光"></a>Exposure 曝光</h3><ul>
+<li>$ H=T\times E$</li>
+<li>exposure=time*irradiance</li>
+<li>Aperture size 光圈（E）f数（F-Number F-STop）直径分之一，越大光圈越小。光圈大远景模糊，浅景深(景深是光像清晰的一段范围)</li>
+<li>Shutter speed 快门曝光时间（T）Motion Blur 运动模糊</li>
+<li>ISO Gain 感光度。太大放大噪声</li>
+<li>F-Stop和Shutter时间要Trade off</li>
+</ul>
+<h3 id="Gauss-Ray-Tracing-Construction-Thin-lens-equation"><a href="#Gauss-Ray-Tracing-Construction-Thin-lens-equation" class="headerlink" title="Gauss Ray Tracing Construction / Thin lens equation"></a>Gauss Ray Tracing Construction / Thin lens equation</h3><p>$\frac{1}{f}=\frac{1}{z_0}+\frac{1}{z_1}$</p>
+<h4 id="Defocus-Blur"><a href="#Defocus-Blur" class="headerlink" title="Defocus Blur"></a>Defocus Blur</h4><h1 id="20-Color-and-Perception"><a href="#20-Color-and-Perception" class="headerlink" title="20 Color and Perception"></a>20 Color and Perception</h1><h2 id="Light-Fields-Lumigraph-光场"><a href="#Light-Fields-Lumigraph-光场" class="headerlink" title="Light Fields / Lumigraph 光场"></a>Light Fields / Lumigraph 光场</h2><ul>
+<li>The Plenoptic Function 全光函数 $Ray=P(\theta,\phi,\lambda,t,V_X,V_Y,V_Z)$</li>
+<li>Only need plenoptic surface, we can describe a substance</li>
+<li>用一个bounding box就能表达一个物体的光场</li>
+<li>双平面，可以参数化记录一个光场</li>
+</ul>
+<h3 id="Light-Field-Camera-光场照相机"><a href="#Light-Field-Camera-光场照相机" class="headerlink" title="Light Field Camera 光场照相机"></a>Light Field Camera 光场照相机</h3><p>原理可以认为是之前照相机记录的是一个个像素，这回是把像素替换成一个个透镜，记录下这一个点的光场。</p>
+<h2 id="Physical-Basis-of-Color-颜色的物理学基础"><a href="#Physical-Basis-of-Color-颜色的物理学基础" class="headerlink" title="Physical Basis of Color 颜色的物理学基础"></a>Physical Basis of Color 颜色的物理学基础</h2><p>Spectral Power Distribution (SPD) 普功率密d度。颜色其实是不同功率和波长色光的感知结果。且具有线性叠加性质</p>
+<h2 id="Biological-Basis-of-Color颜色的生物学基础"><a href="#Biological-Basis-of-Color颜色的生物学基础" class="headerlink" title="Biological Basis of Color颜色的生物学基础"></a>Biological Basis of Color颜色的生物学基础</h2><h3 id="Retinal-Photoreceptor-Cells-Rods-and-Cones感光细胞：视杆细胞（亮度）和视锥细胞（颜色）"><a href="#Retinal-Photoreceptor-Cells-Rods-and-Cones感光细胞：视杆细胞（亮度）和视锥细胞（颜色）" class="headerlink" title="Retinal Photoreceptor Cells: Rods and Cones感光细胞：视杆细胞（亮度）和视锥细胞（颜色）"></a>Retinal Photoreceptor Cells: Rods and Cones感光细胞：视杆细胞（亮度）和视锥细胞（颜色）</h3><ul>
+<li>Cone细胞有三类S、M、L。不同人这三种细胞分布不同</li>
+</ul>
+<h3 id="Metamerism-同色异谱"><a href="#Metamerism-同色异谱" class="headerlink" title="Metamerism 同色异谱"></a>Metamerism 同色异谱</h3><ul>
+<li>人眼只能感受三种细胞返回的值的叠加</li>
+</ul>
+<h3 id="颜色生成-Color-Reproduction"><a href="#颜色生成-Color-Reproduction" class="headerlink" title="颜色生成 Color Reproduction"></a>颜色生成 Color Reproduction</h3><ul>
+<li>Additive Color 增色系统，三种光混合之后得到的是白色的光</li>
+<li>CIE RGB Color Matching Experiment</li>
+</ul>
+<h3 id="Color-Spaces颜色空间"><a href="#Color-Spaces颜色空间" class="headerlink" title="Color Spaces颜色空间"></a>Color Spaces颜色空间</h3><ul>
+<li>Standard Color Spaces sRGB</li>
+<li>CIE XYZ</li>
+<li>Gamut 色域。CIE XYZ色欲要比sRGB广一些</li>
+</ul>
+<h3 id="Perceptually-Organized-Color-Spaces"><a href="#Perceptually-Organized-Color-Spaces" class="headerlink" title="Perceptually Organized Color Spaces"></a>Perceptually Organized Color Spaces</h3><p>HSV Color Space (Hue-Saturation-Value)</p>
+<ul>
+<li>Hue 是色调，颜色具体是什么色的</li>
+<li>Saturation 是饱和度，颜色本色和白色的混合</li>
+<li>Value 是黑色和其颜色的混合</li>
+</ul>
+<p>CIELAB Space</p>
+<ul>
+<li>采用互补色系统Opponent Color Theory ，三个坐标轴</li>
+<li>L*是强弱，白色和黑色</li>
+<li>a*是红色和绿色</li>
+<li>b*是蓝色和黄色</li>
+</ul>
+<p>Everything is Relative</p>
+<ul>
+<li>颜色是人眼感知的结果，比如说对比色</li>
+</ul>
+<p>CMYK系统（用于印刷）</p>
+<ul>
+<li>Cyan青蓝, Magenta品红, Yellow黄, and Key黑</li>
+<li>三种颜色叠加的到任意颜色</li>
+</ul>
+<h1 id="21-Animation-动画"><a href="#21-Animation-动画" class="headerlink" title="21 Animation 动画"></a>21 Animation 动画</h1><h2 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h2><p>Keyframe Animation</p>
+<h2 id="Physical-Simulation物理仿真"><a href="#Physical-Simulation物理仿真" class="headerlink" title="Physical Simulation物理仿真"></a>Physical Simulation物理仿真</h2><ul>
+<li>$F=ma$</li>
+</ul>
+<p>Mass Spring System  质点弹簧系统</p>
+<ul>
+<li>一系列相互连接的弹簧和质点</li>
+<li>Damping force 摩擦力energy loss，方向和速度相反乘一个系数。用相对速度投影到方向上的投影</li>
+<li>其他：有限元方法：FEM适合于传播和扩散过程</li>
+</ul>
+<p>Partical System 粒子系统</p>
+<ul>
+<li>Particle System Forces</li>
+<li>Simulated Flocking as an ODE</li>
+</ul>
+<p>Forward Kinematics 正向运动学</p>
+<p>Inverse Kinematics逆向运动学</p>
+<p>Rigging 操纵</p>
+<ul>
+<li>调节一些控制点，从而控制模型</li>
+</ul>
+<p>Motion Capture 动作捕捉</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Charles Sun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://124.223.12.109/2022/01/18/2201190/">https://124.223.12.109/2022/01/18/2201190/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://124.223.12.109" target="_blank">Chuan 川 Charles</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Graphics/">Graphics</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/18/2201180/"><img class="prev-cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GAMES101 19 Cameras, Lenses and Light Fields</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/17/2201171/"><img class="next-cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GAMES101 18 Advanced Topics in Rendering</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/01/11/2201110/" title="GAMES101 06 MSAA"><img class="cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-11</div><div class="title">GAMES101 06 MSAA</div></div></a></div><div><a href="/2022/01/14/2201140/" title="GAMES101 07 SHADING"><img class="cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">GAMES101 07 SHADING</div></div></a></div><div><a href="/2022/01/14/2201141/" title="GAMES101 08 SHADING 2"><img class="cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">GAMES101 08 SHADING 2</div></div></a></div><div><a href="/2022/01/14/2201143/" title="GAMES101 10 Geometry 1 Introduction"><img class="cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">GAMES101 10 Geometry 1 Introduction</div></div></a></div><div><a href="/2022/01/14/2201142/" title="GAMES101 09 Texture Mapping"><img class="cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">GAMES101 09 Texture Mapping</div></div></a></div><div><a href="/2022/01/14/2201144/" title="GAMES101 11 Geometry 2 Curves and Surface"><img class="cover" src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-14</div><div class="title">GAMES101 11 Geometry 2 Curves and Surface</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2021/12/31/A7ps1j5SnHz8giP.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Charles Sun</div><div class="author-info__description">Sun Chuan is the best boy</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sankhyan24"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/sankhyan24" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:sunchuan24@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#19-Cameras-Lenses-and-Light-Fields-%E7%9B%B8%E6%9C%BA%E6%A3%B1%E9%95%9C%E5%92%8C%E5%85%89%E5%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">19 Cameras, Lenses and Light Fields 相机棱镜和光场</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Camera-Structure"><span class="toc-number">1.1.</span> <span class="toc-text">Camera Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%88%E5%AD%94%E7%9B%B8%E6%9C%BA-Pinhole-Image-Formation"><span class="toc-number">1.1.1.</span> <span class="toc-text">针孔相机 Pinhole Image Formation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feild-of-view-FOV-%E8%A7%86%E5%9C%BA"><span class="toc-number">1.1.2.</span> <span class="toc-text">Feild of view (FOV) 视场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exposure-%E6%9B%9D%E5%85%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">Exposure 曝光</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gauss-Ray-Tracing-Construction-Thin-lens-equation"><span class="toc-number">1.1.4.</span> <span class="toc-text">Gauss Ray Tracing Construction &#x2F; Thin lens equation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Defocus-Blur"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Defocus Blur</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20-Color-and-Perception"><span class="toc-number">2.</span> <span class="toc-text">20 Color and Perception</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Light-Fields-Lumigraph-%E5%85%89%E5%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">Light Fields &#x2F; Lumigraph 光场</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Light-Field-Camera-%E5%85%89%E5%9C%BA%E7%85%A7%E7%9B%B8%E6%9C%BA"><span class="toc-number">2.1.1.</span> <span class="toc-text">Light Field Camera 光场照相机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Physical-Basis-of-Color-%E9%A2%9C%E8%89%B2%E7%9A%84%E7%89%A9%E7%90%86%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">2.2.</span> <span class="toc-text">Physical Basis of Color 颜色的物理学基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Biological-Basis-of-Color%E9%A2%9C%E8%89%B2%E7%9A%84%E7%94%9F%E7%89%A9%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">2.3.</span> <span class="toc-text">Biological Basis of Color颜色的生物学基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Retinal-Photoreceptor-Cells-Rods-and-Cones%E6%84%9F%E5%85%89%E7%BB%86%E8%83%9E%EF%BC%9A%E8%A7%86%E6%9D%86%E7%BB%86%E8%83%9E%EF%BC%88%E4%BA%AE%E5%BA%A6%EF%BC%89%E5%92%8C%E8%A7%86%E9%94%A5%E7%BB%86%E8%83%9E%EF%BC%88%E9%A2%9C%E8%89%B2%EF%BC%89"><span class="toc-number">2.3.1.</span> <span class="toc-text">Retinal Photoreceptor Cells: Rods and Cones感光细胞：视杆细胞（亮度）和视锥细胞（颜色）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Metamerism-%E5%90%8C%E8%89%B2%E5%BC%82%E8%B0%B1"><span class="toc-number">2.3.2.</span> <span class="toc-text">Metamerism 同色异谱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E7%94%9F%E6%88%90-Color-Reproduction"><span class="toc-number">2.3.3.</span> <span class="toc-text">颜色生成 Color Reproduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Color-Spaces%E9%A2%9C%E8%89%B2%E7%A9%BA%E9%97%B4"><span class="toc-number">2.3.4.</span> <span class="toc-text">Color Spaces颜色空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Perceptually-Organized-Color-Spaces"><span class="toc-number">2.3.5.</span> <span class="toc-text">Perceptually Organized Color Spaces</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#21-Animation-%E5%8A%A8%E7%94%BB"><span class="toc-number">3.</span> <span class="toc-text">21 Animation 动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Animation"><span class="toc-number">3.1.</span> <span class="toc-text">Animation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Physical-Simulation%E7%89%A9%E7%90%86%E4%BB%BF%E7%9C%9F"><span class="toc-number">3.2.</span> <span class="toc-text">Physical Simulation物理仿真</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/18/2201180/" title="GAMES101 19 Cameras, Lenses and Light Fields"><img src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GAMES101 19 Cameras, Lenses and Light Fields"/></a><div class="content"><a class="title" href="/2022/01/18/2201180/" title="GAMES101 19 Cameras, Lenses and Light Fields">GAMES101 19 Cameras, Lenses and Light Fields</a><time datetime="2022-01-18T14:38:31.000Z" title="发表于 2022-01-18 22:38:31">2022-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/18/2201190/" title="GAMES101 19,20,21,22"><img src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GAMES101 19,20,21,22"/></a><div class="content"><a class="title" href="/2022/01/18/2201190/" title="GAMES101 19,20,21,22">GAMES101 19,20,21,22</a><time datetime="2022-01-18T14:38:31.000Z" title="发表于 2022-01-18 22:38:31">2022-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/2201171/" title="GAMES101 18 Advanced Topics in Rendering"><img src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GAMES101 18 Advanced Topics in Rendering"/></a><div class="content"><a class="title" href="/2022/01/17/2201171/" title="GAMES101 18 Advanced Topics in Rendering">GAMES101 18 Advanced Topics in Rendering</a><time datetime="2022-01-17T13:03:46.000Z" title="发表于 2022-01-17 21:03:46">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/2201170/" title="GAMES101 17 Material and Appearance"><img src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GAMES101 17 Material and Appearance"/></a><div class="content"><a class="title" href="/2022/01/17/2201170/" title="GAMES101 17 Material and Appearance">GAMES101 17 Material and Appearance</a><time datetime="2022-01-17T11:36:54.000Z" title="发表于 2022-01-17 19:36:54">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/16/2201160/" title="GAMES101 16 Ray Tracing 4 Path Tracing"><img src="https://s2.loli.net/2022/01/05/8YXeMtP9g1HrcTJ.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GAMES101 16 Ray Tracing 4 Path Tracing"/></a><div class="content"><a class="title" href="/2022/01/16/2201160/" title="GAMES101 16 Ray Tracing 4 Path Tracing">GAMES101 16 Ray Tracing 4 Path Tracing</a><time datetime="2022-01-16T03:15:48.000Z" title="发表于 2022-01-16 11:15:48">2022-01-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Charles Sun</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>((window.gitter = {}).chat = {}).options = {
+  room: 'Charles_Sun/community',
+};
+
+if (false) {
+  function chatBtnHide () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'none'
+  }
+
+  function chatBtnShow () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'block'
+  }
+}
+</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
