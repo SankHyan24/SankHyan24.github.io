@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Black Jack v1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/support.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/theme.js"></script>
+    <script type="text/javascript" src="js/event.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Black Jack</h1>
+
+        <a href="javascript:game.start();" id="newgamebutton">New Game</a>
+        <a href="javascript:game.pause();" id="pausegamebutton">Go Go Go</a>
+        <p>
+            score:<span id="score">0</span>
+        </p>
+    </header>
+    <div id="grid-container">
+        <div class="grid-cell" id="grid-cell-0-0"> </div>
+    </div>
+    <div id="copyright-container">
+        <h6>v1.0.0</h6>
+        <h6>Powered by JavaScript</h6>
+        <h6>Made by <a href="https://github.com/SankHyan24">Sun Chuan</a></h6>
+    </div>
+
+
+</body>
+
+</html>
