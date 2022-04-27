@@ -8,10 +8,16 @@
 header {
     display: block;
     margin: 0 auto;
-    width: 500px;
+    /* width: 500px; */
     text-align: center;
-    /* background: #6e2f70; */
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    right: 10%;
+    background: #ffffa5;
+    border-radius: 30px;
 }
+
 
 header h1 {
     font-family: Arial, Helvetica, sans-serif;
@@ -35,20 +41,6 @@ header #newgamebutton:hover {
     background: #9f8b77;
 }
 
-header #pausegamebutton {
-    width: 100px;
-    padding: 10px;
-    background: #8f7a66;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
-
-header #pausegamebutton:hover {
-    background: #9f8b77;
-}
 
 header p {
     font-family: Arial, Helvetica, sans-serif;
@@ -67,26 +59,18 @@ header p {
     position: relative;
 }
 
-.grid-cell {
-    width: 512px;
-    height: 512px;
-    border-radius: 6px;
-    background: #ccc0b3;
+#doodle {
+    /* 该元素显示在网页最下层 */
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #bbada0;
+    border-radius: 10px;
+
 }
 
-#gameover {
-    background-color: black;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 60px;
-    position: absolute;
-    top: 45%;
-    left: 42%;
-    width: 250px;
-    text-align: center;
-    display: none;
-}
 
 #copyright-container {
 
@@ -98,6 +82,4 @@ header p {
     border-radius: 10px;
     text-align: center;
     position: relative;
-    /* background:#cc5e5e; */
-    /* background: #0000ff; */
 }

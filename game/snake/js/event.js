@@ -8,19 +8,19 @@ $(document).keydown(function (event) {
     // Only implement when the game is start
     if (game.ifstart()) {
         switch (event.keyCode) {
-            case 37://left
+            case 65://left 37
                 if (snake_head.direction != DIR.right)
                     snake_head.dirbuffer = DIR.left;
                 break;
-            case 38://up
+            case 87://up 38
                 if (snake_head.direction != DIR.down)
                     snake_head.dirbuffer = DIR.up;
                 break;
-            case 39://right
+            case 68://right 39
                 if (snake_head.direction != DIR.left)
                     snake_head.dirbuffer = DIR.right;
                 break;
-            case 40://down
+            case 83://down 40
                 if (snake_head.direction != DIR.up)
                     snake_head.dirbuffer = DIR.down;
                 break;
