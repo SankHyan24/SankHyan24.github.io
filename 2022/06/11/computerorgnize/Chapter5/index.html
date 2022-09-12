@@ -1,0 +1,454 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机组成 5 | Chuan 川 Charles</title><meta name="keywords" content="计算机组成"><meta name="author" content="Charles Sun"><meta name="copyright" content="Charles Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Chapter 5 Exploiting Memory Hierarchy Memory Technologies (介绍存储类型) Memory Hierarchy Introduction (层次化概念) The basics of Cache (高速缓存介绍) Measuring and improving cache performance (高速缓存性能提升) Dependable Me">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成 5">
+<meta property="og:url" content="https://scitbb.top/2022/06/11/computerorgnize/Chapter5/index.html">
+<meta property="og:site_name" content="Chuan 川 Charles">
+<meta property="og:description" content="Chapter 5 Exploiting Memory Hierarchy Memory Technologies (介绍存储类型) Memory Hierarchy Introduction (层次化概念) The basics of Cache (高速缓存介绍) Measuring and improving cache performance (高速缓存性能提升) Dependable Me">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png">
+<meta property="article:published_time" content="2022-06-11T13:45:18.000Z">
+<meta property="article:modified_time" content="2022-09-12T15:33:12.339Z">
+<meta property="article:author" content="Charles Sun">
+<meta property="article:tag" content="计算机组成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png"><link rel="shortcut icon" href="https://s2.loli.net/2022/01/04/1DCTS7sH3om6rXU.jpg"><link rel="canonical" href="https://scitbb.top/2022/06/11/computerorgnize/Chapter5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/pwa/manifest.json"/><meta name="msapplication-TileColor" content="#fff"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3145446820269348',
+  enable_page_level_ads: 'true'
+});</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Charles Sun","link":"链接: ","source":"来源: Chuan 川 Charles","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成 5',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-12 23:33:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2021/12/31/A7ps1j5SnHz8giP.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 程序</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/2048"><i class="fa-fw fas fa-database"></i><span> 2048</span></a></li><li><a class="site-page child" href="/game/snake"><i class="fa-fw fas fa-gamepad"></i><span> 贪吃蛇</span></a></li><li><a class="site-page child" href="/game/who"><i class="fa-fw fas fa-gamepad"></i><span> 谁写报告</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Chuan 川 Charles</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 程序</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/2048"><i class="fa-fw fas fa-database"></i><span> 2048</span></a></li><li><a class="site-page child" href="/game/snake"><i class="fa-fw fas fa-gamepad"></i><span> 贪吃蛇</span></a></li><li><a class="site-page child" href="/game/who"><i class="fa-fw fas fa-gamepad"></i><span> 谁写报告</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成 5</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-11T13:45:18.000Z" title="发表于 2022-06-11 21:45:18">2022-06-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-12T15:33:12.339Z" title="更新于 2022-09-12 23:33:12">2022-09-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机组成 5"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Chapter-5-Exploiting-Memory-Hierarchy"><a href="#Chapter-5-Exploiting-Memory-Hierarchy" class="headerlink" title="Chapter 5 Exploiting Memory Hierarchy"></a>Chapter 5 Exploiting Memory Hierarchy</h1><ol>
+<li>Memory Technologies (介绍存储类型)</li>
+<li>Memory Hierarchy Introduction (层次化概念)</li>
+<li>The basics of Cache (高速缓存介绍)</li>
+<li>Measuring and improving cache performance (高速缓存性能提升)</li>
+<li>Dependable Memory Hierarchy ()</li>
+<li>Virtual Machines (虚拟机)</li>
+<li>Virtual Memory (虚拟内存)</li>
+<li>A common Framework for Memory Hierarchy (计算机通常层次化内存结构)</li>
+<li>Using FSM to Control a simple Cache (用状态机控制缓存)</li>
+</ol>
+<h2 id="1-Memory-Technologies"><a href="#1-Memory-Technologies" class="headerlink" title="1. Memory Technologies"></a>1. Memory Technologies</h2><h3 id="Review"><a href="#Review" class="headerlink" title="Review:"></a>Review:</h3><ul>
+<li><p>SRAM:</p>
+<ul>
+<li>use CMOS as a basic element.<ul>
+<li>N型（没有小圆圈）给1是导通状态</li>
+<li>P型（有圆圈）给0是导通状态</li>
+<li><code>vcc</code> 接p，<code>gnd</code>接n，构成一个非门。</li>
+</ul>
+</li>
+<li>两个CMOS反相器构成1bit单元，再加上写入读出CMOS构成</li>
+</ul>
+</li>
+<li><p>DRAM:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220505202811835.png" alt="image-20220505202811835"></p>
+<ul>
+<li>构造：使用电容（一个管子），体积小，但读的速度比SRAM慢，需要不断刷新<ul>
+<li>Write: 给bit line充上1/0（本身既不是1也不是0），给word line设置成1</li>
+<li>Read:  先给bit line pre-charge 一下，word line设置成1，bit line 会变高/低，sense amp来读取是1还是0</li>
+</ul>
+</li>
+<li>通常使用阵列，寻址：先行后列的方式，分时复用确定地址（减少引脚数量）。（也是比较慢的原因）<ul>
+<li>DRAM 是访问一整行</li>
+<li><strong>Burst Mode</strong> 一下子读出一大堆相连的数据，这样尽可能减少读取所需时间</li>
+</ul>
+</li>
+<li><strong>DDR SDRAM</strong>  （双倍数据率同步动态随机存取存储器）上升沿下降沿都利用起来，比DRAM快一倍</li>
+<li><strong>QDR</strong> 输入输出分开了，可以同时进行读写，速度又提升了一倍</li>
+</ul>
+</li>
+<li><p>Flash Storage 闪存</p>
+<ul>
+<li>比硬盘100/1000倍快，固态硬盘也是这玩意做的，还可以做的更小、稳定</li>
+</ul>
+</li>
+<li><p>Disk Storage 磁盘</p>
+<ul>
+<li>磁道、读写磁头、……</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结：大的存储器不快，快的存储器不大（贵）</strong></p>
+<h2 id="2-Memory-Hierarchy-Introduction"><a href="#2-Memory-Hierarchy-Introduction" class="headerlink" title="2. Memory Hierarchy Introduction"></a>2. Memory Hierarchy Introduction</h2><h4 id="程序总是在一些时刻访问一小部分的内容："><a href="#程序总是在一些时刻访问一小部分的内容：" class="headerlink" title="程序总是在一些时刻访问一小部分的内容："></a>程序总是在一些时刻访问一小部分的内容：</h4><h3 id="Temporal-Locality"><a href="#Temporal-Locality" class="headerlink" title="Temporal Locality"></a>Temporal Locality</h3><ul>
+<li>时间局部性原理：最近被访问的内容大概率被再次访问</li>
+</ul>
+<h3 id="Spatial-Locality"><a href="#Spatial-Locality" class="headerlink" title="Spatial Locality"></a>Spatial Locality</h3><ul>
+<li>空间局部性原理：刚被访问过的内容旁边的内容大概率被访问</li>
+</ul>
+<h3 id="Taking-Advantage-of-Locality"><a href="#Taking-Advantage-of-Locality" class="headerlink" title="Taking Advantage of Locality"></a>Taking Advantage of Locality</h3><ol>
+<li>所有东西都存在disk上面</li>
+<li>把最常访问的东西从disk存到DRAM上面（Main Memory）</li>
+<li>把最近访问的内容放到更小的SRAM上面（Cache, 和CPU高度相关）</li>
+</ol>
+<h3 id="Some-Important-Items"><a href="#Some-Important-Items" class="headerlink" title="Some Important Items"></a>Some Important Items</h3><ul>
+<li><strong>Block:</strong> 数据复制的基本单位</li>
+<li><strong>Hit</strong> “命中”，要访问的内容就在 upper level 的存储单元里 <ul>
+<li><strong>Hit Time</strong> 命中了要消耗的时间（访问upper level）</li>
+<li><strong>Hit Ratio</strong></li>
+</ul>
+</li>
+<li><strong>Miss</strong> “缺失”，会把这部分内容从 lower level 里提取出来<ul>
+<li><strong>Miss Penalty</strong> 缺失造成的时间开销</li>
+<li><strong>Miss Ratio = 1 - Hit Ratio</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="Exploiting-Memory-Hierarchy"><a href="#Exploiting-Memory-Hierarchy" class="headerlink" title="Exploiting Memory Hierarchy"></a>Exploiting Memory Hierarchy</h3><p>从上到下：</p>
+<ol>
+<li>Register</li>
+<li>L1- Cache (on chip)</li>
+<li>L2- Cache (SRAM)</li>
+<li>Main Memory (DRAM)</li>
+<li>Disk, Tape, …</li>
+</ol>
+<h2 id="3-The-basics-of-Cache"><a href="#3-The-basics-of-Cache" class="headerlink" title="3. The basics of Cache"></a>3. The basics of Cache</h2><h3 id="two-issues"><a href="#two-issues" class="headerlink" title="two issues:"></a>two issues:</h3><h4 id="1-How-to-know-if-a-data-item-is-in-the-cache"><a href="#1-How-to-know-if-a-data-item-is-in-the-cache" class="headerlink" title="1. How to know if a data item is in the cache?"></a>1. How to know if a data item is in the cache?</h4><h5 id="direct-mapping-algorithm-怎么放？取模！"><a href="#direct-mapping-algorithm-怎么放？取模！" class="headerlink" title="direct-mapping algorithm: 怎么放？取模！"></a>direct-mapping algorithm: 怎么放？取模！</h5><p>DRAM的数据放到SRAM中，把DRAM的地址取模，模上8（Cache大小），余数就是其在对应的位置。</p>
+<p>实际上就是取高位。相同低位的地址的内容共享一块cache的block。</p>
+<p>也意味着，00001，01001，10001，11001，不可能同时存在于Cache中。</p>
+<h5 id="Tag-and-Valid-Bits"><a href="#Tag-and-Valid-Bits" class="headerlink" title="Tag and Valid Bits:"></a>Tag and Valid Bits:</h5><ul>
+<li><strong>Tag:</strong> Cache里存的不只是数据，也存放了高位地址(低位地址是自身的index) </li>
+<li><strong>Valid Bits:</strong> 还放了有效位，表明其是不是真正存着东西</li>
+<li>实际上一个block： Valid bit, Tag, Data</li>
+</ul>
+<h5 id="Cache的直接映射策略："><a href="#Cache的直接映射策略：" class="headerlink" title="Cache的直接映射策略："></a>Cache的直接映射策略：</h5><ul>
+<li>Cache实际存放【Valid】（【Dirty】）【Tag】【Data】</li>
+<li>32/64位地址，如果是按照字节寻址，实际被映射为【Tag】【Cache Index】【Word Offset】【Byte Offset】长度加一起为64，Byte Offset一般为“Word有几个byte”，Word Offset一般为“Cache的一个block（最小单元）有几个word”。</li>
+<li>其中【Cache Index】长度取决于Cache被分为几个block，取完log</li>
+<li>其中【Word Offset】+【Byte Offset】长度取决于cache的一个block有几个Byte，也就是与【Data】长度有关，log([Data])-3</li>
+<li>其中【Tag】长度取决于以上两点</li>
+</ul>
+<h4 id="2-If-it-is-how-do-we-find-it"><a href="#2-If-it-is-how-do-we-find-it" class="headerlink" title="2. If it is, how do we find it?"></a>2. If it is, how do we find it?</h4><p>Memory block address:  Tag+index+offset of the block.</p>
+<h4 id="3-Handling-Cache-reads-hit-and-Misses"><a href="#3-Handling-Cache-reads-hit-and-Misses" class="headerlink" title="3. Handling Cache reads hit and Misses"></a>3. Handling Cache reads hit and Misses</h4><p>Hit 就好了，如果miss了</p>
+<h5 id="Instruction-miss-（READ）"><a href="#Instruction-miss-（READ）" class="headerlink" title="Instruction miss:（READ）"></a>Instruction miss:（READ）</h5><p>CPU停下来，等整个block传送到Cache，之后再重启CPU，hit，执行程序</p>
+<ol>
+<li>将原有PC（加4之前miss那条） 给memory</li>
+<li>等待memory读出来</li>
+<li>Tag和valid bit设置，value设置</li>
+<li>重启CPU</li>
+</ol>
+<h5 id="Data-miss-（READ-WRITE）"><a href="#Data-miss-（READ-WRITE）" class="headerlink" title="Data miss:（READ/WRITE）"></a>Data miss:（READ/WRITE）</h5><h6 id="Write-Hit"><a href="#Write-Hit" class="headerlink" title="Write Hit:"></a>Write Hit:</h6><ol>
+<li>WRITE BACK: 原先的data已经在Cache里面了，只将数据写入data cache里面。（现在cache里的数据和dram数据不一样了，会有inconsistent，但是fast）</li>
+<li>WRITE THROUGH: 把数据写在Cache和Dram之中，会慢</li>
+</ol>
+<h6 id="Write-Miss"><a href="#Write-Miss" class="headerlink" title="Write Miss:"></a>Write Miss:</h6><ol>
+<li>把整个block写入缓存，之后写入word</li>
+</ol>
+<h3 id="Deep-conception-in-Cache："><a href="#Deep-conception-in-Cache：" class="headerlink" title="Deep conception in Cache："></a>Deep conception in Cache：</h3><p>四个主要问题：</p>
+<ol>
+<li>Block Placement （还有其他策略）</li>
+<li>Block Identification   (tag/block)</li>
+<li>Block Replacement   (random,lru,fifo)</li>
+<li>Write Strategy   (writeback/through)</li>
+</ol>
+<h3 id="Q1-BLock-Placement-块放置的方式"><a href="#Q1-BLock-Placement-块放置的方式" class="headerlink" title="Q1: BLock Placement 块放置的方式"></a>Q1: BLock Placement 块放置的方式</h3><h4 id="Direct-mapping"><a href="#Direct-mapping" class="headerlink" title="Direct mapping"></a>Direct mapping</h4><p>讲过了</p>
+<h4 id="Fully-Associative"><a href="#Fully-Associative" class="headerlink" title="Fully Associative"></a>Fully Associative</h4><p>Block 能在Cache里面任何位置</p>
+<h4 id="Set-Associative"><a href="#Set-Associative" class="headerlink" title="Set Associative"></a>Set Associative</h4><p>Block 能去取模之后的几个位置之一（set组）</p>
+<h3 id="Q2-Block-Identification-块的定位"><a href="#Q2-Block-Identification-块的定位" class="headerlink" title="Q2: Block Identification 块的定位"></a>Q2: Block Identification 块的定位</h3><p>Tag+index+offset。如何定位的？</p>
+<p>先是看mem的index，定位到cache的位置</p>
+<p>再检查valid位和tag，看看这个cache对应的是否是mem的地址</p>
+<p>最后在offset找到data的位置</p>
+<h3 id="Q3-Block-Replacement-块替换策略"><a href="#Q3-Block-Replacement-块替换策略" class="headerlink" title="Q3: Block Replacement 块替换策略"></a>Q3: Block Replacement 块替换策略</h3><p>内存块替换：</p>
+<p>直接映射不涉及内存块替换（一个内存只对应一个地址，如果cache冲突就只能替换掉）</p>
+<p>组关联和全关联，组关联一个内存地址对应一个set的大小数量个地址，全关联对应整个cache大小数量个地址</p>
+<h4 id="Random-Replacement"><a href="#Random-Replacement" class="headerlink" title="Random Replacement"></a>Random Replacement</h4><p>好实现</p>
+<h4 id="Least-Recently-Used-LRU"><a href="#Least-Recently-Used-LRU" class="headerlink" title="Least-Recently Used (LRU)"></a>Least-Recently Used (LRU)</h4><p>需要额外的位来跟踪accesses</p>
+<h4 id="First-in-First-out-FIFO"><a href="#First-in-First-out-FIFO" class="headerlink" title="First in First out (FIFO)"></a>First in First out (FIFO)</h4><p>先进的先出 </p>
+<h3 id="Q4-Write-Strategy-写策略"><a href="#Q4-Write-Strategy-写策略" class="headerlink" title="Q4: Write Strategy 写策略"></a>Q4: Write Strategy 写策略</h3><p>write through （改变data之后从cache和mem都写入，只需要valid bit，有掉电保护但是慢）和 write back （只写入cache，一次性地写回mem，额外需要一个dirty bit）</p>
+<ul>
+<li><p>write through advance read misses 不会导致写入，好实现，对多核一个主存的cpu更友好（consistent）</p>
+</li>
+<li><p>write back advance 对mem带宽要求低</p>
+</li>
+</ul>
+<h4 id="Write-Stall"><a href="#Write-Stall" class="headerlink" title="Write Stall"></a>Write Stall</h4><p>write through 的时候CPU一定要等的</p>
+<p>write buffer：</p>
+<img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220516104236269.png" alt="image-20220516104236269" style="zoom: 50%;" align="left"/>
+
+<p>write buffer是一小块cache，作为写入的缓冲区，减少写入过程等待memory写消耗时间的stall</p>
+<h4 id="Write-Misses"><a href="#Write-Misses" class="headerlink" title="Write Misses"></a>Write Misses</h4><ul>
+<li><p>write allocate：把要改的内存先加载到cache，再找时间写入到mem（使用write back）</p>
+</li>
+<li><p>write around：不加载到cache直接写入到mem（使用write through）</p>
+</li>
+</ul>
+<h4 id="Performance-in-Four-way-interleaved-memory"><a href="#Performance-in-Four-way-interleaved-memory" class="headerlink" title="Performance in Four-way interleaved memory"></a>Performance in Four-way interleaved memory</h4><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220516101142198.png" alt="image-20220516101142198" style="zoom: 50%;" align="left" />
+
+<p>将Memory根据word分成几个部分，向cache传输资源时“分时复用”，减少memory miss的代价</p>
+<p>bus短（比如说1个word）的话，每个block取回来要分四次上传</p>
+<p>bus长很好，但是成本比较高</p>
+<p>Interleaved的方法做到“分时复用”，间隔上传，减少成本增大带宽。</p>
+<h2 id="4-Measuring-and-improving-cache-performance"><a href="#4-Measuring-and-improving-cache-performance" class="headerlink" title="4 Measuring and improving cache performance"></a>4 Measuring and improving cache performance</h2><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220516102307530.png" alt="image-20220516102307530" style="zoom:50%;" align="left"/>
+
+<p>Average Memory Access time= hit time + miss time</p>
+<p>= hit rate * cache time + miss rate * memory time</p>
+<h3 id="Measuring-cache-performance"><a href="#Measuring-cache-performance" class="headerlink" title="Measuring  cache performance"></a>Measuring  cache performance</h3><p>*<em>CPU time = (CPU执行周期+ memory stall的周期)<em>cycle time</em></em></p>
+<h4 id="Read-Stall："><a href="#Read-Stall：" class="headerlink" title="Read-Stall："></a>Read-Stall：</h4><p>time=$\frac{read}{program}\times miss\ rate \times miss\ penalty$</p>
+<p>miss penalty一般都被转算成需要额外多少个周期了</p>
+<h4 id="Write-Stall："><a href="#Write-Stall：" class="headerlink" title="Write-Stall："></a>Write-Stall：</h4><ul>
+<li>write through 的 penalty 近似为0，所以stall的时间主要看mem写入时间</li>
+<li>write back 大多数这种情况下，read 和write的penalty都一样的，都是从memory从block中取回所需要的时间</li>
+</ul>
+<p>计算还是很好算的</p>
+<p>发现限制CPUtime的主要还是在于cache的penalty time，解决方法：</p>
+<ul>
+<li>设计cache的block placement减少replace 的次数</li>
+<li>多级缓存，每级缓存miss都有一个概率，降低到memory的miss的概率</li>
+</ul>
+<h2 id="7-Virtual-Memory"><a href="#7-Virtual-Memory" class="headerlink" title="7 Virtual Memory"></a>7 Virtual Memory</h2><p>Main Memory act as a Cache for the secondary storage (like disk storage)</p>
+<p>将内存的地址映射到disk的地址。虽然虚拟内存是连续的，但是所映射的物理内存空间未必连续。</p>
+<p>虚拟内存的block——Page：</p>
+<p>​    虚拟地址高位：Virtual Page Number，低位：Page offset</p>
+<p>虚拟内存的miss：Page Fault</p>
+<ul>
+<li><p>需要从disk读取内容到memory</p>
+</li>
+<li><p>miss penalty很大，因为一个page就很大</p>
+</li>
+<li><p>减少page fault的次数，需要替换策略（LRU</p>
+</li>
+<li><p>使用write back，因为每次写入disk的代价太高</p>
+</li>
+<li><p>可以在软件层实现该过程（OS）</p>
+</li>
+</ul>
+<p>需要Page Table，储存 虚拟内存（CPU地址）到物理内存的映射。</p>
+<p>这个物理内存（翻译成实际内存应该更好一点）可能在mem中也可能在disk中</p>
+<ul>
+<li><p>如果调用的在disk中，就要尽量把它提出来替换到mem里面，然后更新Page Table的映射</p>
+</li>
+<li><p>所以说虚拟内存实际上扩大了内存的容量，用一部分disk内容当作实际内存了</p>
+</li>
+<li><p>每个程序都会有一个page table</p>
+</li>
+<li><p>OS中CPU进程之间相互切换，就是包含page table切换的过程</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220610222637192.png" alt="image-20220610222637192"></p>
+<p>顺序：</p>
+<ul>
+<li><p>得到一个地址，检查TLB试图找出物理内存，没有就取PageTable找，再没有就是Page Fault，不在mem中也肯定不在cache中</p>
+</li>
+<li><p>如果TLB没找到，PageTable找到了，就按照得到的物理内存搜索mem，这个地址一定在mem中，但未必在cache中</p>
+</li>
+<li><p>如果TLB找到了，PageTable一定也能找到，去mem中找，有可能在cache中</p>
+</li>
+</ul>
+<p>TLB是Page Table的缓存，PageTable miss了TLB一定miss，反之未必</p>
+<p>Page Table</p>
+<ul>
+<li>Miss time = Hit time + miss rate * miss penalty</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Charles Sun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://scitbb.top/2022/06/11/computerorgnize/Chapter5/">https://scitbb.top/2022/06/11/computerorgnize/Chapter5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://scitbb.top" target="_blank">Chuan 川 Charles</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/">计算机组成</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/13/computerorgnize/Chapter8/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机组成 6</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/10/computerorgnize/Chapter4/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机组成 4</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/17/computerorgnize/Chapter1/" title="计算机组成 1"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-17</div><div class="title">计算机组成 1</div></div></a></div><div><a href="/2022/06/09/computerorgnize/Chapter2/" title="计算机组成 2"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-09</div><div class="title">计算机组成 2</div></div></a></div><div><a href="/2022/06/09/computerorgnize/Chapter3/" title="计算机组成 3"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-09</div><div class="title">计算机组成 3</div></div></a></div><div><a href="/2022/06/10/computerorgnize/Chapter4/" title="计算机组成 4"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-10</div><div class="title">计算机组成 4</div></div></a></div><div><a href="/2022/06/13/computerorgnize/Chapter8/" title="计算机组成 6"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-13</div><div class="title">计算机组成 6</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">V</span><span class="switch-btn"></span><span class="second-comment">a</span></div></div><div class="comment-wrap"><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2021/12/31/A7ps1j5SnHz8giP.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Charles Sun</div><div class="author-info__description">Sun Chuan is the best boy</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sankhyan24"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/sankhyan24" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:sunchuan24@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-5-Exploiting-Memory-Hierarchy"><span class="toc-number">1.</span> <span class="toc-text">Chapter 5 Exploiting Memory Hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Memory-Technologies"><span class="toc-number">1.1.</span> <span class="toc-text">1. Memory Technologies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Review"><span class="toc-number">1.1.1.</span> <span class="toc-text">Review:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Memory-Hierarchy-Introduction"><span class="toc-number">1.2.</span> <span class="toc-text">2. Memory Hierarchy Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%80%BB%E6%98%AF%E5%9C%A8%E4%B8%80%E4%BA%9B%E6%97%B6%E5%88%BB%E8%AE%BF%E9%97%AE%E4%B8%80%E5%B0%8F%E9%83%A8%E5%88%86%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">程序总是在一些时刻访问一小部分的内容：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Temporal-Locality"><span class="toc-number">1.2.1.</span> <span class="toc-text">Temporal Locality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spatial-Locality"><span class="toc-number">1.2.2.</span> <span class="toc-text">Spatial Locality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Taking-Advantage-of-Locality"><span class="toc-number">1.2.3.</span> <span class="toc-text">Taking Advantage of Locality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Some-Important-Items"><span class="toc-number">1.2.4.</span> <span class="toc-text">Some Important Items</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exploiting-Memory-Hierarchy"><span class="toc-number">1.2.5.</span> <span class="toc-text">Exploiting Memory Hierarchy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-The-basics-of-Cache"><span class="toc-number">1.3.</span> <span class="toc-text">3. The basics of Cache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#two-issues"><span class="toc-number">1.3.1.</span> <span class="toc-text">two issues:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-How-to-know-if-a-data-item-is-in-the-cache"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">1. How to know if a data item is in the cache?</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#direct-mapping-algorithm-%E6%80%8E%E4%B9%88%E6%94%BE%EF%BC%9F%E5%8F%96%E6%A8%A1%EF%BC%81"><span class="toc-number">1.3.1.1.1.</span> <span class="toc-text">direct-mapping algorithm: 怎么放？取模！</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Tag-and-Valid-Bits"><span class="toc-number">1.3.1.1.2.</span> <span class="toc-text">Tag and Valid Bits:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Cache%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%AD%96%E7%95%A5%EF%BC%9A"><span class="toc-number">1.3.1.1.3.</span> <span class="toc-text">Cache的直接映射策略：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-If-it-is-how-do-we-find-it"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">2. If it is, how do we find it?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Handling-Cache-reads-hit-and-Misses"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">3. Handling Cache reads hit and Misses</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Instruction-miss-%EF%BC%88READ%EF%BC%89"><span class="toc-number">1.3.1.3.1.</span> <span class="toc-text">Instruction miss:（READ）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Data-miss-%EF%BC%88READ-WRITE%EF%BC%89"><span class="toc-number">1.3.1.3.2.</span> <span class="toc-text">Data miss:（READ&#x2F;WRITE）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Write-Hit"><span class="toc-number">1.3.1.3.2.1.</span> <span class="toc-text">Write Hit:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Write-Miss"><span class="toc-number">1.3.1.3.2.2.</span> <span class="toc-text">Write Miss:</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deep-conception-in-Cache%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">Deep conception in Cache：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q1-BLock-Placement-%E5%9D%97%E6%94%BE%E7%BD%AE%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.3.</span> <span class="toc-text">Q1: BLock Placement 块放置的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Direct-mapping"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">Direct mapping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fully-Associative"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">Fully Associative</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-Associative"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">Set Associative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q2-Block-Identification-%E5%9D%97%E7%9A%84%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.3.4.</span> <span class="toc-text">Q2: Block Identification 块的定位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q3-Block-Replacement-%E5%9D%97%E6%9B%BF%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-number">1.3.5.</span> <span class="toc-text">Q3: Block Replacement 块替换策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Random-Replacement"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">Random Replacement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Least-Recently-Used-LRU"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">Least-Recently Used (LRU)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#First-in-First-out-FIFO"><span class="toc-number">1.3.5.3.</span> <span class="toc-text">First in First out (FIFO)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Q4-Write-Strategy-%E5%86%99%E7%AD%96%E7%95%A5"><span class="toc-number">1.3.6.</span> <span class="toc-text">Q4: Write Strategy 写策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Write-Stall"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">Write Stall</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Write-Misses"><span class="toc-number">1.3.6.2.</span> <span class="toc-text">Write Misses</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance-in-Four-way-interleaved-memory"><span class="toc-number">1.3.6.3.</span> <span class="toc-text">Performance in Four-way interleaved memory</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Measuring-and-improving-cache-performance"><span class="toc-number">1.4.</span> <span class="toc-text">4 Measuring and improving cache performance</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Measuring-cache-performance"><span class="toc-number">1.4.1.</span> <span class="toc-text">Measuring  cache performance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Read-Stall%EF%BC%9A"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">Read-Stall：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Write-Stall%EF%BC%9A"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">Write-Stall：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Virtual-Memory"><span class="toc-number">1.5.</span> <span class="toc-text">7 Virtual Memory</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/11/srtp/2022-9-11-body-relight-Paper-(cont.)/" title="Hello, I am Sun Chuan"><img src="https://s2.loli.net/2022/01/04/NQrSCYhWIjBE87X.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello, I am Sun Chuan"/></a><div class="content"><a class="title" href="/2022/09/11/srtp/2022-9-11-body-relight-Paper-(cont.)/" title="Hello, I am Sun Chuan">Hello, I am Sun Chuan</a><time datetime="2022-09-10T16:00:00.000Z" title="发表于 2022-09-11 00:00:00">2022-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/computerorgnize/Chapter8/" title="计算机组成 6"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 6"/></a><div class="content"><a class="title" href="/2022/06/13/computerorgnize/Chapter8/" title="计算机组成 6">计算机组成 6</a><time datetime="2022-06-13T13:45:18.000Z" title="发表于 2022-06-13 21:45:18">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/11/computerorgnize/Chapter5/" title="计算机组成 5"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 5"/></a><div class="content"><a class="title" href="/2022/06/11/computerorgnize/Chapter5/" title="计算机组成 5">计算机组成 5</a><time datetime="2022-06-11T13:45:18.000Z" title="发表于 2022-06-11 21:45:18">2022-06-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/10/computerorgnize/Chapter4/" title="计算机组成 4"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 4"/></a><div class="content"><a class="title" href="/2022/06/10/computerorgnize/Chapter4/" title="计算机组成 4">计算机组成 4</a><time datetime="2022-06-10T13:45:18.000Z" title="发表于 2022-06-10 21:45:18">2022-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/09/computerorgnize/Chapter2/" title="计算机组成 2"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 2"/></a><div class="content"><a class="title" href="/2022/06/09/computerorgnize/Chapter2/" title="计算机组成 2">计算机组成 2</a><time datetime="2022-06-09T13:45:18.000Z" title="发表于 2022-06-09 21:45:18">2022-06-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2021/12/31/rYXLato2Nz1H5GK.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Charles Sun</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!<br />
+<img src="http://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  target="_blank">辽ICP备2022000878号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: '[object Object]',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>((window.gitter = {}).chat = {}).options = {
+  room: 'Charles_Sun/community',
+};
+
+if (false) {
+  function chatBtnHide () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'none'
+  }
+
+  function chatBtnShow () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'block'
+  }
+}
+</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机组成 2 | Chuan 川 Charles</title><meta name="keywords" content="计算机组成"><meta name="author" content="Charles Sun"><meta name="copyright" content="Charles Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Lecture 2 Instructions: Language of the MachineOutline Introduction  Operations of the computer hardware (计算机硬件的操作)  Operands of the computer hardware(计算机硬件的操作数)  Signed and unsigned numbers (有符号和无符号数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成 2">
+<meta property="og:url" content="https://scitbb.top/2022/06/09/computerorgnize/Chapter2/index.html">
+<meta property="og:site_name" content="Chuan 川 Charles">
+<meta property="og:description" content="Lecture 2 Instructions: Language of the MachineOutline Introduction  Operations of the computer hardware (计算机硬件的操作)  Operands of the computer hardware(计算机硬件的操作数)  Signed and unsigned numbers (有符号和无符号数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png">
+<meta property="article:published_time" content="2022-06-09T13:45:18.000Z">
+<meta property="article:modified_time" content="2022-09-12T15:32:57.295Z">
+<meta property="article:author" content="Charles Sun">
+<meta property="article:tag" content="计算机组成">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png"><link rel="shortcut icon" href="https://s2.loli.net/2022/01/04/1DCTS7sH3om6rXU.jpg"><link rel="canonical" href="https://scitbb.top/2022/06/09/computerorgnize/Chapter2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/pwa/manifest.json"/><meta name="msapplication-TileColor" content="#fff"/><link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/pwa/16.png"/><link rel="mask-icon" href="/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-3145446820269348',
+  enable_page_level_ads: 'true'
+});</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Charles Sun","link":"链接: ","source":"来源: Chuan 川 Charles","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成 2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-12 23:32:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2021/12/31/A7ps1j5SnHz8giP.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 程序</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/2048"><i class="fa-fw fas fa-database"></i><span> 2048</span></a></li><li><a class="site-page child" href="/game/snake"><i class="fa-fw fas fa-gamepad"></i><span> 贪吃蛇</span></a></li><li><a class="site-page child" href="/game/who"><i class="fa-fw fas fa-gamepad"></i><span> 谁写报告</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Chuan 川 Charles</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 程序</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/game/2048"><i class="fa-fw fas fa-database"></i><span> 2048</span></a></li><li><a class="site-page child" href="/game/snake"><i class="fa-fw fas fa-gamepad"></i><span> 贪吃蛇</span></a></li><li><a class="site-page child" href="/game/who"><i class="fa-fw fas fa-gamepad"></i><span> 谁写报告</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成 2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-09T13:45:18.000Z" title="发表于 2022-06-09 21:45:18">2022-06-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-12T15:32:57.295Z" title="更新于 2022-09-12 23:32:57">2022-09-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机组成 2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Lecture-2-Instructions-Language-of-the-Machine"><a href="#Lecture-2-Instructions-Language-of-the-Machine" class="headerlink" title="Lecture 2 Instructions: Language of the Machine"></a>Lecture 2 Instructions: Language of the Machine</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Introduction </li>
+<li>Operations of the computer hardware (计算机硬件的操作) </li>
+<li>Operands of the computer hardware(计算机硬件的操作数) </li>
+<li>Signed and unsigned numbers (有符号和无符号数)  太简单跳过了</li>
+<li>Representing instructions in the computer(计算机中指令的表示) </li>
+<li>Logical operations(逻辑操作) </li>
+<li>Instructions for making decision(决策指令) </li>
+<li>Supporting procedures in computer hardware(计算机对过程的支持) （函数）</li>
+<li>Instruction addressing (指令的寻址)</li>
+</ul>
+<h2 id="Operation"><a href="#Operation" class="headerlink" title="Operation"></a>Operation</h2><p><strong>design principle 1 Simplicity favors regularity</strong><br>规范化让操作更简单<br>简单可以保证低消耗和高性能</p>
+<p>32 bits = 1 word<br>64 bits = double word</p>
+<h2 id="Operand"><a href="#Operand" class="headerlink" title="Operand"></a>Operand</h2><ol>
+<li>x0-x31 64bit general registers.   <strong>design principle 2 Smaller is faster</strong> 但是2的倍数永远最优<ol>
+<li><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220609163145328.png" alt="image-20220609163145328"></li>
+</ol>
+</li>
+<li>对内存的操作只能通过ld、sd两类指令完成<br>内存比寄存器慢<br>翻译器必须尽量使用寄存器</li>
+<li>Little Endian: 小端规则，超过一个word的内容如何排序：小字节放在小的地址（前面），高字节放后面（0x12345678：内存从左至右78 56 34 12）<br>least significant byte at least address of a word 最低位放在小端<br>MIPS ARM Alpha SPARC使用大端规则</li>
+<li>Risc-V不需要内存中的word内存对齐（memory alignment）</li>
+<li>RISCV中的立即数</li>
+<li>RISCV   R-Format Instruction </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>function(7b)</th>
+<th>RS2(5b)</th>
+<th>RS1(5b)</th>
+<th>function(3b)</th>
+<th>DR(5b)</th>
+<th>opcode(7b)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0000000</td>
+<td>00000</td>
+<td>00000</td>
+<td>000</td>
+<td>00000</td>
+<td>0000000</td>
+</tr>
+</tbody></table>
+<p> <strong>design principle 3 Good design demands good compromises</strong><br>不同的格式会增大decoding的难度，但是要允许这类情况<br>尽量保持指令格式相同 </p>
+<ol>
+<li>RISCV  S-Format Instruction </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>imm[11:5]</th>
+<th>RS2</th>
+<th>RS1</th>
+<th>function</th>
+<th>imm[4:0]</th>
+<th>opcode(7b)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7b</td>
+<td>5b</td>
+<td>5b</td>
+<td>3b</td>
+<td>5b</td>
+<td>0000000</td>
+</tr>
+</tbody></table>
+<p>   <strong>design principle 3 Good design demands good compromises</strong></p>
+<ol start="2">
+<li><p>现阶段计算机两大principle<br>指令被当作数字<br>程序被当作数字存在内存中——冯诺依曼架构</p>
+</li>
+<li><p>指令集结构的几种类型</p>
+</li>
+<li><p>R-type    三个R</p>
+</li>
+<li><p>I-type     两个R一个立即数</p>
+</li>
+<li><p>S-type</p>
+</li>
+<li><p>SB-type</p>
+</li>
+<li><p>UJ-type</p>
+</li>
+<li><p>U-type</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220609162926890.png" alt="image-20220609162926890"></p>
+<h2 id="Logical-Operations"><a href="#Logical-Operations" class="headerlink" title="Logical Operations"></a>Logical Operations</h2><ol>
+<li>Instructions for bitwise manipulation </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>RISCV</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Shift left logical</td>
+<td>slli</td>
+</tr>
+<tr>
+<td>Shift right</td>
+<td>srli</td>
+</tr>
+<tr>
+<td>Bit-by-bit AND</td>
+<td>and, andi</td>
+</tr>
+<tr>
+<td>Bit-by-bit OR</td>
+<td>or, ori</td>
+</tr>
+<tr>
+<td>Bit-by-bit XOR/NOT</td>
+<td>xor, xori</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>RISC-V assembly language of logical and shift</li>
+<li>logical:<br>   and/or/xor/andi/ori/xori     dr, sr1, sr2</li>
+<li>shift:<br>   sll/srl/sra/slli      dr, sr1, sr2     </li>
+</ol>
+<h2 id="Instructions-for-making-decisions"><a href="#Instructions-for-making-decisions" class="headerlink" title="Instructions for making decisions"></a>Instructions for making decision<strong>s</strong></h2><ol>
+<li><p><strong>Branch instructions</strong></p>
+<ol>
+<li>beq r1, r2, Location     相等就跳转到 Location</li>
+<li>bne r1, r2, Location      不等就跳转到 Location</li>
+</ol>
+</li>
+<li><p>An Example of <code>if else then</code> clause</p>
+<ol>
+<li><code>bne r1,r2. ELSE</code></li>
+<li><code>things to do if</code></li>
+<li><code>beq x0,x0, EXIT</code></li>
+<li><code>ELSE: else do</code></li>
+<li><code>EXIT: exit</code></li>
+</ol>
+</li>
+<li><p>Supports <code>LOOPS</code></p>
+<ol>
+<li><code>LOOP: ......</code></li>
+<li><code>add x22,x22,x23(x22++)</code></li>
+<li><code>bne x22,x21,LOOP</code></li>
+</ol>
+</li>
+<li><p>Suport <code>while</code></p>
+<ol>
+<li>和loop类似。区别：开头一个exit的判断和跳转，loop末尾一个铁定的jump</li>
+</ol>
+</li>
+<li><p><strong>set on less than : <em><u>slt</u></em></strong></p>
+<ol>
+<li>slt x5, x19, x20  # <code>set x5=1 if x19 &lt; x20</code></li>
+</ol>
+</li>
+<li><p>other conditional operation</p>
+<ol>
+<li>blt rs1,rs2,L1   #<code>if(rs1&lt;rs2)branch to instruction L1</code></li>
+<li>bge rs1,rs2,L1 # <code>if(rs1&gt;=rs2)branch to instruction L1</code></li>
+<li>bltu bgeu:    Unsigned Comparison</li>
+</ol>
+</li>
+<li><p>Hold out Case/Switch:<br>很诡异，只有case0123这样才会支持<br>jalr r1,imm(r2) 跳到r2加上偏移量，然后将下一句话的地址存到r1</p>
+</li>
+<li><p><strong>Important conception–Basic Blocks</strong></p>
+<ol>
+<li>除了结尾之处，没有内置分支</li>
+<li>除了开始之处，没有分支标签</li>
+</ol>
+</li>
+<li><p><strong>Supporting Procedures in Computer Hardware</strong> 如何支持函数调用？<br>传入参数到一个函数可以访问的地方 （argument）<br>把控制权交给进程（jump到那个位置）<br>得到寄存器的储存资源（原来的值暂存）<br><strong>做想做的事情</strong><br>把算好的结果放到主函数能接触到的地方<br>返回到原先的位置</p>
+</li>
+<li><p>Procedure Call Instructions</p>
+</li>
+<li><p>Caller使用 jal 指令<br>jal指令： jump and link   <strong>jal x1, ProcedureAddress</strong><br>把下一个指令的位置（要返回的位置）放到x1<br>然后条到 ProcedureAddress的位置</p>
+</li>
+<li><p>Callee使用 jalr 指令<br>jalr指令：jump and link register <strong>jalr x0,0(x1)</strong><br>把下一条指令的位置放到x0（实际啥也没干）<br>然后跳到x1+0的位置</p>
+</li>
+<li><p>Using More Registers</p>
+<ol>
+<li><p>More Registers for procedure calling：</p>
+<ol>
+<li>a0 ~ a7(x10-x17): eight argument registers to pass parameters &amp; return values</li>
+<li>ra/x1：one return address register to return to origin point</li>
+</ol>
+</li>
+<li><p>Stack：</p>
+<ol>
+<li>ideal data structure for spilling registers</li>
+<li>Push, pop , Stack pointer ( sp )</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220318213003046.png" alt="image-20220318213003046"></p>
+</li>
+</ol>
+</li>
+<li><p>Pointer of stack<br>$fp</p>
+<pre><code>saved argument registers
+saved return address
+saved saved resisters
+Local variables
+</code></pre>
+<p>$sp</p>
+</li>
+<li><p>内存中的映射：（地址从上往下由高到低）<br><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220318214910358.png" alt="image-20220318214910358"><br>static data是全局变量<br>Text是程序代码<br>Dynamic data 是malloc开的heap<br>stack是自动存储的栈</p>
+</li>
+<li><p>Byte / Halfword / Word Operation</p>
+<ol>
+<li>1 byte = 8 bits</li>
+<li>1 Halfword = 2 Byte</li>
+<li>1 Word = 4 Byte</li>
+<li>1 Doubleword = 8 Byte</li>
+<li>the offset of the instruction is used by Byte<ol>
+<li>lb,lh,lw,ld 这几个要sign extend to 64 bits</li>
+<li>lbu lhu lwu ldu 这几个要0 extend to 64 bits</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 我宣布我已经领略到汇编语言的真谛了</span><br><span class="line"># 汇编语言最难处理的就是递归和函数调用</span><br><span class="line"># 这里我给出一个递归/函数调用的公式化例子</span><br><span class="line"></span><br><span class="line"># lw sw 的时候一个单位为4， ld sd 的时候为8</span><br><span class="line"># 函数自己管理自己的内容，自己分配并恢复自己的空间</span><br><span class="line"># 所有函数除了a类型t类型，其他寄存器都是公用的</span><br><span class="line">	addi		sp,x0,1024</span><br><span class="line">	j			GOGO</span><br><span class="line">Fib:</span><br><span class="line">	addi		sp,sp,-16	#1 进入函数，首先先分配内存</span><br><span class="line">	sw			ra,12(sp)	#2 其次存储返回地址和frame pointer</span><br><span class="line">	sw			s0,8(sp)</span><br><span class="line">	addi		s0,sp,16	#3 给frame pointer赋值，从-4开始一直到-16，其中-4-8保留</span><br><span class="line">	sw			a0,-12(s0)	#  frame pointer的作用是一个函数内的变量偏移base</span><br><span class="line">	</span><br><span class="line">	lw			a0,-12(s0)	#4 开始执行内容，这里的操作以memory为准，不以寄存器为准</span><br><span class="line">	beq			a0,x0,RETA	#  这里面的a0只是用来暂时存放num，不代表映射num</span><br><span class="line">	addi		t0,x0,1		#  t0不实际占用mem，只是临时存放</span><br><span class="line">    beq			a0,t0,RETA	</span><br><span class="line">    </span><br><span class="line">    lw			a0,-12(s0)</span><br><span class="line">    addi		a0,a0,-1</span><br><span class="line">    jal			ra,Fib</span><br><span class="line">    add			a1,a0,x0</span><br><span class="line">    sw			a1,-16(s0)	#  记录中间过程作为临时变量</span><br><span class="line">    lw			a0,-12(s0)	#  恢复a0</span><br><span class="line">    addi		a0,a0,-2</span><br><span class="line">    jal			ra,Fib</span><br><span class="line">    lw			a1,-16(s0)</span><br><span class="line">    add			a0,a0,a1	</span><br><span class="line">    sw			a0,-12(s0)	#5 算出的结果存入mem，为退出做准备</span><br><span class="line">RETA:</span><br><span class="line">	lw			a0,-12(s0)	#6 从mem读出结果，准备退出</span><br><span class="line">	lw			ra,12(sp)	#7 恢复ra和s0，这里用的是sp做偏移地址，s0被弃用</span><br><span class="line">	lw			s0,8(sp)</span><br><span class="line">	addi		sp,sp,16	#8 释放内存</span><br><span class="line">	jr			ra			#9 跳回  </span><br><span class="line">GOGO:</span><br><span class="line">	addi		a0,x0,6</span><br><span class="line">	jal			ra,Fib</span><br></pre></td></tr></table></figure>
+
+<h1 id="Addressing-Method"><a href="#Addressing-Method" class="headerlink" title="Addressing Method"></a>Addressing Method</h1><ol>
+<li>RISCV fot 32 bit Immediate and Address (Wide bit addressing)<ol>
+<li>use instruction lui:<code>lui s3,976</code>（高20位放到s3里面）<strong>U format</strong></li>
+<li><code> addi s3,s3, imm12</code>低12位对s3加</li>
+</ol>
+</li>
+<li>Branch Addressing<ol>
+<li>SB\Uj format 在后面都补一个0，寻址能力*2</li>
+<li>（只有condition branch(SB)类型和unconditional jump(UJ)类型在后面加0，ldsd都不加）</li>
+</ol>
+</li>
+<li>Jump Addressing</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/image-20220321110351490.png" alt="image-20220321110351490" style="zoom:80%;" />
+
+<h2 id="Synchronization-in-Risc-V"><a href="#Synchronization-in-Risc-V" class="headerlink" title="Synchronization in Risc-V"></a>Synchronization in Risc-V</h2><ol>
+<li>Use Lock and atomic operation:<ol>
+<li>Load reserved: lr.d rd,(rs1)</li>
+<li>Store conditional: sc.d rd,(rs1),rs2</li>
+</ol>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Charles Sun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://scitbb.top/2022/06/09/computerorgnize/Chapter2/">https://scitbb.top/2022/06/09/computerorgnize/Chapter2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://scitbb.top" target="_blank">Chuan 川 Charles</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/">计算机组成</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/06/10/computerorgnize/Chapter4/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机组成 4</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/09/computerorgnize/Chapter3/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机组成 3</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/17/computerorgnize/Chapter1/" title="计算机组成 1"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-17</div><div class="title">计算机组成 1</div></div></a></div><div><a href="/2022/06/09/computerorgnize/Chapter3/" title="计算机组成 3"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-09</div><div class="title">计算机组成 3</div></div></a></div><div><a href="/2022/06/10/computerorgnize/Chapter4/" title="计算机组成 4"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-10</div><div class="title">计算机组成 4</div></div></a></div><div><a href="/2022/06/13/computerorgnize/Chapter8/" title="计算机组成 6"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-13</div><div class="title">计算机组成 6</div></div></a></div><div><a href="/2022/06/11/computerorgnize/Chapter5/" title="计算机组成 5"><img class="cover" src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-11</div><div class="title">计算机组成 5</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">V</span><span class="switch-btn"></span><span class="second-comment">a</span></div></div><div class="comment-wrap"><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2021/12/31/A7ps1j5SnHz8giP.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Charles Sun</div><div class="author-info__description">Sun Chuan is the best boy</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sankhyan24"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/sankhyan24" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:sunchuan24@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lecture-2-Instructions-Language-of-the-Machine"><span class="toc-number">1.</span> <span class="toc-text">Lecture 2 Instructions: Language of the Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Outline"><span class="toc-number">1.1.</span> <span class="toc-text">Outline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operation"><span class="toc-number">1.2.</span> <span class="toc-text">Operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operand"><span class="toc-number">1.3.</span> <span class="toc-text">Operand</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logical-Operations"><span class="toc-number">1.4.</span> <span class="toc-text">Logical Operations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instructions-for-making-decisions"><span class="toc-number">1.5.</span> <span class="toc-text">Instructions for making decisions</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Addressing-Method"><span class="toc-number">2.</span> <span class="toc-text">Addressing Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Synchronization-in-Risc-V"><span class="toc-number">2.1.</span> <span class="toc-text">Synchronization in Risc-V</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/11/srtp/2022-9-11-body-relight-Paper-(cont.)/" title="Hello, I am Sun Chuan"><img src="https://s2.loli.net/2022/01/04/NQrSCYhWIjBE87X.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello, I am Sun Chuan"/></a><div class="content"><a class="title" href="/2022/09/11/srtp/2022-9-11-body-relight-Paper-(cont.)/" title="Hello, I am Sun Chuan">Hello, I am Sun Chuan</a><time datetime="2022-09-10T16:00:00.000Z" title="发表于 2022-09-11 00:00:00">2022-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/13/computerorgnize/Chapter8/" title="计算机组成 6"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 6"/></a><div class="content"><a class="title" href="/2022/06/13/computerorgnize/Chapter8/" title="计算机组成 6">计算机组成 6</a><time datetime="2022-06-13T13:45:18.000Z" title="发表于 2022-06-13 21:45:18">2022-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/11/computerorgnize/Chapter5/" title="计算机组成 5"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 5"/></a><div class="content"><a class="title" href="/2022/06/11/computerorgnize/Chapter5/" title="计算机组成 5">计算机组成 5</a><time datetime="2022-06-11T13:45:18.000Z" title="发表于 2022-06-11 21:45:18">2022-06-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/10/computerorgnize/Chapter4/" title="计算机组成 4"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 4"/></a><div class="content"><a class="title" href="/2022/06/10/computerorgnize/Chapter4/" title="计算机组成 4">计算机组成 4</a><time datetime="2022-06-10T13:45:18.000Z" title="发表于 2022-06-10 21:45:18">2022-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/09/computerorgnize/Chapter2/" title="计算机组成 2"><img src="https://cdn.jsdelivr.net/gh/SankHyan24/image1/img/202209122332612.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成 2"/></a><div class="content"><a class="title" href="/2022/06/09/computerorgnize/Chapter2/" title="计算机组成 2">计算机组成 2</a><time datetime="2022-06-09T13:45:18.000Z" title="发表于 2022-06-09 21:45:18">2022-06-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s2.loli.net/2021/12/31/rYXLato2Nz1H5GK.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Charles Sun</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!<br />
+<img src="http://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  target="_blank">辽ICP备2022000878号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: '[object Object]',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>((window.gitter = {}).chat = {}).options = {
+  room: 'Charles_Sun/community',
+};
+
+if (false) {
+  function chatBtnHide () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'none'
+  }
+
+  function chatBtnShow () {
+    document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'block'
+  }
+}
+</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
